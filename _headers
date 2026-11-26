@@ -1,0 +1,19 @@
+# Intestazioni che Netlify aggiunge a ogni risposta.
+
+/*
+  # solo https, anche le prossime volte
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  # il browser non deve "indovinare" il tipo dei file
+  X-Content-Type-Options: nosniff
+  # ai siti esterni si dice solo da che sito si arriva, non la pagina
+  Referrer-Policy: strict-origin-when-cross-origin
+  # il sito non usa fotocamera, microfono, posizione
+  Permissions-Policy: camera=(), geolocation=(), microphone=()
+  # il sito non può essere mostrato dentro la pagina di qualcun altro
+  X-Frame-Options: DENY
+  # si caricano solo file del sito stesso
+  Content-Security-Policy: default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data:; font-src 'self'; media-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'
+
+# I file con l'impronta nel nome non cambiano mai: il browser li tiene per un anno.
+/assets/*
+  Cache-Control: public, max-age=31536000, immutable
